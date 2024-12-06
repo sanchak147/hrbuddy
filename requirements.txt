@@ -1,0 +1,11 @@
+flask
+pandas
+sentence-transformers
+langchain
+langchain-google-genai
+PyPDF2
+openpyxllangchain_community
+langchain_core
+python-dotenv
+chromadb
+langchain_huggingface
