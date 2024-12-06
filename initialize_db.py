@@ -44,7 +44,7 @@ def initialize_vector_store():
             return pdf_content
 
         # Load PDFs
-        pdf_directory = "C:/Users/wrong/SETU/ITC_POC/production_files/pdf"
+        pdf_directory ="/var/www/itc-poc/app/data/pdf"
         pdf_content = load_pdfs(pdf_directory)
         
         if not pdf_content:
