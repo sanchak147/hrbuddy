@@ -81,8 +81,15 @@ def load_chroma_db():
     try:
         print("Loading ChromaDB...")
         embedding = HuggingFaceEmbeddings(model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
+        
+        # Get the absolute path to the vector store directory
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        persist_directory = os.path.join(base_dir, '..', 'itc_poc_db')
+        
+        print(f"Loading ChromaDB from: {persist_directory}")
+        
         vector_store = Chroma(
-            persist_directory='./itc_poc_db',
+            persist_directory=persist_directory,
             embedding_function=embedding,
             collection_name='itc_poc_policies'
         )
@@ -93,6 +100,7 @@ def load_chroma_db():
         return True
     except Exception as e:
         print(f"Error loading ChromaDB: {str(e)}")
+        traceback.print_exc()  # Add this for more detailed error logging
         return False
 
 
