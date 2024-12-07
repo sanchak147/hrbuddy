@@ -8,6 +8,14 @@ def initialize_vector_store():
     try:
         print("Starting vector store initialization...")
         
+        # Get absolute paths
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        pdf_directory = os.path.join(base_dir, 'data', 'pdf')
+        persist_directory = os.path.join(base_dir, '..', 'itc_poc_db')
+        
+        print(f"PDF Directory: {pdf_directory}")
+        print(f"Persist Directory: {persist_directory}")
+        
         # Define the embedding model
         print("Loading embedding model...")
         model_name = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
@@ -44,7 +52,6 @@ def initialize_vector_store():
             return pdf_content
 
         # Load PDFs
-        pdf_directory = "C:/Users/wrong/SETU/ITC_POC/production_files/pdf"
         pdf_content = load_pdfs(pdf_directory)
         
         if not pdf_content:
@@ -70,7 +77,6 @@ def initialize_vector_store():
 
         # Initialize Chroma vector store
         print("Initializing Chroma vector store...")
-        persist_directory = './itc_poc_db'
         
         # Clear existing data if any
         if os.path.exists(persist_directory):
